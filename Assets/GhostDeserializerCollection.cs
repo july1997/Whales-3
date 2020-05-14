@@ -12,11 +12,12 @@ public struct WhaleGhostDeserializerCollection : IGhostDeserializerCollection
         var arr = new string[]
         {
             "WhaleGhostSerializer",
+            "BoidGhostSerializer",
         };
         return arr;
     }
 
-    public int Length => 1;
+    public int Length => 2;
 #endif
     public void Initialize(World world)
     {
@@ -24,11 +25,16 @@ public struct WhaleGhostDeserializerCollection : IGhostDeserializerCollection
         m_WhaleSnapshotDataNewGhostIds = curWhaleGhostSpawnSystem.NewGhostIds;
         m_WhaleSnapshotDataNewGhosts = curWhaleGhostSpawnSystem.NewGhosts;
         curWhaleGhostSpawnSystem.GhostType = 0;
+        var curBoidGhostSpawnSystem = world.GetOrCreateSystem<BoidGhostSpawnSystem>();
+        m_BoidSnapshotDataNewGhostIds = curBoidGhostSpawnSystem.NewGhostIds;
+        m_BoidSnapshotDataNewGhosts = curBoidGhostSpawnSystem.NewGhosts;
+        curBoidGhostSpawnSystem.GhostType = 1;
     }
 
     public void BeginDeserialize(JobComponentSystem system)
     {
         m_WhaleSnapshotDataFromEntity = system.GetBufferFromEntity<WhaleSnapshotData>();
+        m_BoidSnapshotDataFromEntity = system.GetBufferFromEntity<BoidSnapshotData>();
     }
     public bool Deserialize(int serializer, Entity entity, uint snapshot, uint baseline, uint baseline2, uint baseline3,
         ref DataStreamReader reader, NetworkCompressionModel compressionModel)
@@ -37,6 +43,9 @@ public struct WhaleGhostDeserializerCollection : IGhostDeserializerCollection
         {
             case 0:
                 return GhostReceiveSystem<WhaleGhostDeserializerCollection>.InvokeDeserialize(m_WhaleSnapshotDataFromEntity, entity, snapshot, baseline, baseline2,
+                baseline3, ref reader, compressionModel);
+            case 1:
+                return GhostReceiveSystem<WhaleGhostDeserializerCollection>.InvokeDeserialize(m_BoidSnapshotDataFromEntity, entity, snapshot, baseline, baseline2,
                 baseline3, ref reader, compressionModel);
             default:
                 throw new ArgumentException("Invalid serializer type");
@@ -51,6 +60,10 @@ public struct WhaleGhostDeserializerCollection : IGhostDeserializerCollection
                 m_WhaleSnapshotDataNewGhostIds.Add(ghostId);
                 m_WhaleSnapshotDataNewGhosts.Add(GhostReceiveSystem<WhaleGhostDeserializerCollection>.InvokeSpawn<WhaleSnapshotData>(snapshot, ref reader, compressionModel));
                 break;
+            case 1:
+                m_BoidSnapshotDataNewGhostIds.Add(ghostId);
+                m_BoidSnapshotDataNewGhosts.Add(GhostReceiveSystem<WhaleGhostDeserializerCollection>.InvokeSpawn<BoidSnapshotData>(snapshot, ref reader, compressionModel));
+                break;
             default:
                 throw new ArgumentException("Invalid serializer type");
         }
@@ -59,6 +72,9 @@ public struct WhaleGhostDeserializerCollection : IGhostDeserializerCollection
     private BufferFromEntity<WhaleSnapshotData> m_WhaleSnapshotDataFromEntity;
     private NativeList<int> m_WhaleSnapshotDataNewGhostIds;
     private NativeList<WhaleSnapshotData> m_WhaleSnapshotDataNewGhosts;
+    private BufferFromEntity<BoidSnapshotData> m_BoidSnapshotDataFromEntity;
+    private NativeList<int> m_BoidSnapshotDataNewGhostIds;
+    private NativeList<BoidSnapshotData> m_BoidSnapshotDataNewGhosts;
 }
 public struct EnableWhaleGhostReceiveSystemComponent : IComponentData
 {}

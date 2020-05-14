@@ -12,6 +12,10 @@ using UnityEngine;
 [UpdateInGroup(typeof(ClientSimulationSystemGroup))]
 public class InputComponentSystem : ComponentSystem
 {
+    private float localAngleV = 0f;
+    private float localAngleH = 0f;
+    private float defaultspeed = 2.0f;
+
     protected override void OnCreate()
     {
         RequireSingletonForUpdate<NetworkIdComponent>();
@@ -34,16 +38,22 @@ public class InputComponentSystem : ComponentSystem
             });
             return;
         }
+        
         var input = default(InputCommandData);
         input.tick = World.GetExistingSystem<ClientSimulationSystemGroup>().ServerTick;
         if (Input.GetKey("a"))
-            input.horizontal -= 1.0f;
+            localAngleH -= 1.0f;
         if (Input.GetKey("d"))
-            input.horizontal += 1.0f;
+            localAngleH += 1.0f;
         if (Input.GetKey("s"))
-            input.vertical -= 1.0f;
+            localAngleV -= 1.0f;
         if (Input.GetKey("w"))
-            input.vertical += 1.0f;
+            localAngleV += 1.0f;
+
+        input.angleH = localAngleH;
+        input.angleV = localAngleV;
+        input.speed = defaultspeed;
+
         var inputBuffer = EntityManager.GetBuffer<InputCommandData>(localInput);
         inputBuffer.AddCommandData(input);
     }
@@ -52,13 +62,12 @@ public class InputComponentSystem : ComponentSystem
 [UpdateInGroup(typeof(GhostPredictionSystemGroup))]
 public class PlayerCommponentSystem : ComponentSystem
 {
-    private float3 posVector;
-    private float speed = 2.0f;
+    private float3 front;
 
     protected override void OnCreate()
     {
         // 向いてる方向
-        posVector = new float3 (1, 0, 0);
+        front = new float3 (1, 0, 0);
     }
 
     protected override void OnUpdate()
@@ -72,13 +81,12 @@ public class PlayerCommponentSystem : ComponentSystem
                 return;
             InputCommandData input;
             inputBuffer.GetDataAtTick(tick, out input);
-            Debug.Log(input.horizontal);
 
             // 回転行列を求める
-            var rotation = Quaternion.AngleAxis(input.horizontal, new float3(0, 1, 0)) * Quaternion.AngleAxis(input.vertical, new float3(0, 0, -1));
-            var dir = rotation * posVector;
+            var rotation = Quaternion.AngleAxis(input.angleH, new float3(0, 1, 0)) * Quaternion.AngleAxis(input.angleV, new float3(0, 0, -1));
+            var dir = rotation * front;
             
-            pos.Value += new float3(-dir) * speed * deltaTime; 
+            pos.Value += new float3(-dir) * input.speed * deltaTime; 
             rot.Value = rotation;
         });
     }

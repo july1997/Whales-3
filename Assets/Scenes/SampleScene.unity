@@ -343,6 +343,61 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1469619555
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1469619557}
+  - component: {fileID: 1469619556}
+  m_Layer: 0
+  m_Name: Bootstrap
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1469619556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1469619555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd9c10de58b9849ab8da17be907f7404, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  param: {fileID: 11400000, guid: cec91962aa7664dbc98bf04dce2c5db7, type: 2}
+  boidInfo:
+    count: 100
+    scale: {x: 0.1, y: 0.1, z: 0.3}
+    renderer:
+      mesh: {fileID: 0}
+      material: {fileID: 0}
+      subMesh: 0
+      layer: 0
+      castShadows: 0
+      receiveShadows: 0
+      needMotionVectorPass: 0
+--- !u!4 &1469619557
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1469619555}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1624242412
 GameObject:
   m_ObjectHideFlags: 0
@@ -390,6 +445,8 @@ MonoBehaviour:
   DeserializerCollectionPath: GhostDeserializerCollection.cs
   NamePrefix: Whale
   Ghosts:
-  - prefab: {fileID: 4237061409760863460, guid: 81ccf6f8fa2b24f2581d21874f3f99ec,
+  - prefab: {fileID: 5151724258222626618, guid: 81ccf6f8fa2b24f2581d21874f3f99ec,
       type: 3}
+    enabled: 1
+  - prefab: {fileID: 348202234339984917, guid: 3a764422c9166427ca3254df7d770e85, type: 3}
     enabled: 1
