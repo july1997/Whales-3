@@ -445,8 +445,7 @@ MonoBehaviour:
   DeserializerCollectionPath: GhostDeserializerCollection.cs
   NamePrefix: Whale
   Ghosts:
-  - prefab: {fileID: 5151724258222626618, guid: 81ccf6f8fa2b24f2581d21874f3f99ec,
-      type: 3}
-    enabled: 1
   - prefab: {fileID: 348202234339984917, guid: 3a764422c9166427ca3254df7d770e85, type: 3}
+    enabled: 1
+  - prefab: {fileID: 188587134977273651, guid: 81ccf6f8fa2b24f2581d21874f3f99ec, type: 3}
     enabled: 1

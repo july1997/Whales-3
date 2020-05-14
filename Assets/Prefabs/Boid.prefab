@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4640116836270274}
   - component: {fileID: 33993203653692440}
   - component: {fileID: 23444656600357970}
+  - component: {fileID: 8440118525880686509}
   - component: {fileID: 348202234339984917}
   m_Layer: 0
   m_Name: Boid
@@ -80,6 +81,79 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &8440118525880686509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1103657446341984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b275e5f92732148048d7b77e264ac30e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShapeType: 0
+  m_PrimitiveCenter:
+    x: 0
+    y: 0
+    z: 0
+  m_PrimitiveSize:
+    x: 1
+    y: 1
+    z: 0.99999994
+  m_PrimitiveOrientation:
+    Value:
+      x: -0
+      y: 0
+      z: 0
+    RotationOrder: 4
+  m_Capsule:
+    Height: 1
+    Radius: 0.5
+    Axis: 1
+  m_Cylinder:
+    Height: 0.99999994
+    Radius: 0.5
+    Axis: 2
+  m_CylinderSideCount: 20
+  m_SphereRadius: 0.5
+  m_MinimumSkinnedVertexWeight: 0.1
+  m_ConvexHullGenerationParameters:
+    m_SimplificationTolerance: 0.015
+    m_BevelRadius: 0.05
+    m_MinimumAngle: 2.5000002
+  m_CustomMesh: {fileID: 0}
+  m_ForceUnique: 0
+  m_Material:
+    m_SupportsTemplate: 1
+    m_Template: {fileID: 0}
+    m_IsTrigger:
+      m_Override: 0
+      m_Value: 1
+    m_Friction:
+      m_Override: 0
+      m_Value:
+        Value: 0.5
+        CombineMode: 0
+    m_Restitution:
+      m_Override: 0
+      m_Value:
+        Value: 0
+        CombineMode: 2
+    m_BelongsTo:
+      m_Override: 0
+      m_Value: 0101010101010101010101010101010101010101010101010101010101010101
+    m_CollidesWith:
+      m_Override: 0
+      m_Value: 0101010101010101010101010101010101010101010101010101010101010101
+    m_RaisesCollisionEvents:
+      m_Override: 0
+      m_Value: 0
+    m_CustomTags:
+      m_Override: 0
+      m_Value: 0000000000000000
+  m_ConvexRadius_Deprecated: -1
 --- !u!114 &348202234339984917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -101,6 +175,14 @@ MonoBehaviour:
   Importance: 1
   PredictingPlayerNetworkId: 
   Components:
+  - name: Unity.Physics.PhysicsCollider
+    interpolatedClient: 1
+    predictedClient: 1
+    server: 0
+    sendDataTo: 0
+    fields: []
+    manualFieldList: 0
+    entityIndex: 0
   - name: Unity.Rendering.PerInstanceCullingTag
     interpolatedClient: 1
     predictedClient: 1
@@ -125,7 +207,7 @@ MonoBehaviour:
     fields: []
     manualFieldList: 0
     entityIndex: 0
-  - name: Unity.Transforms.LocalToWorld
+  - name: Unity.Transforms.CompositeScale
     interpolatedClient: 1
     predictedClient: 1
     server: 1
@@ -133,7 +215,7 @@ MonoBehaviour:
     fields: []
     manualFieldList: 0
     entityIndex: 0
-  - name: Unity.Transforms.NonUniformScale
+  - name: Unity.Transforms.LocalToWorld
     interpolatedClient: 1
     predictedClient: 1
     server: 1

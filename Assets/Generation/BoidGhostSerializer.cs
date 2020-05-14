@@ -6,8 +6,8 @@ using Unity.Transforms;
 
 public struct BoidGhostSerializer : IGhostSerializer<BoidSnapshotData>
 {
+    private ComponentType componentTypeCompositeScale;
     private ComponentType componentTypeLocalToWorld;
-    private ComponentType componentTypeNonUniformScale;
     private ComponentType componentTypeRotation;
     private ComponentType componentTypeTranslation;
     // FIXME: These disable safety since all serializers have an instance of the same type - causing aliasing. Should be fixed in a cleaner way
@@ -23,8 +23,8 @@ public struct BoidGhostSerializer : IGhostSerializer<BoidSnapshotData>
     public int SnapshotSize => UnsafeUtility.SizeOf<BoidSnapshotData>();
     public void BeginSerialize(ComponentSystemBase system)
     {
+        componentTypeCompositeScale = ComponentType.ReadWrite<CompositeScale>();
         componentTypeLocalToWorld = ComponentType.ReadWrite<LocalToWorld>();
-        componentTypeNonUniformScale = ComponentType.ReadWrite<NonUniformScale>();
         componentTypeRotation = ComponentType.ReadWrite<Rotation>();
         componentTypeTranslation = ComponentType.ReadWrite<Translation>();
         ghostRotationType = system.GetArchetypeChunkComponentType<Rotation>(true);

@@ -77,6 +77,10 @@ public class WhaleGhostUpdateSystem : JobComponentSystem
                 var ghostChild5Translation = ghostTranslationFromEntity[ghostLinkedEntityGroupArray[entityIndex][6].Value];
                 var ghostChild6Rotation = ghostRotationFromEntity[ghostLinkedEntityGroupArray[entityIndex][7].Value];
                 var ghostChild6Translation = ghostTranslationFromEntity[ghostLinkedEntityGroupArray[entityIndex][7].Value];
+                var ghostChild7Rotation = ghostRotationFromEntity[ghostLinkedEntityGroupArray[entityIndex][8].Value];
+                var ghostChild7Translation = ghostTranslationFromEntity[ghostLinkedEntityGroupArray[entityIndex][8].Value];
+                var ghostChild8Rotation = ghostRotationFromEntity[ghostLinkedEntityGroupArray[entityIndex][9].Value];
+                var ghostChild8Translation = ghostTranslationFromEntity[ghostLinkedEntityGroupArray[entityIndex][9].Value];
                 ghostPlayerCommandData.PlayerId = snapshotData.GetPlayerCommandDataPlayerId(deserializerState);
                 ghostRotation.Value = snapshotData.GetRotationValue(deserializerState);
                 ghostTranslation.Value = snapshotData.GetTranslationValue(deserializerState);
@@ -94,6 +98,10 @@ public class WhaleGhostUpdateSystem : JobComponentSystem
                 ghostChild5Translation.Value = snapshotData.GetChild5TranslationValue(deserializerState);
                 ghostChild6Rotation.Value = snapshotData.GetChild6RotationValue(deserializerState);
                 ghostChild6Translation.Value = snapshotData.GetChild6TranslationValue(deserializerState);
+                ghostChild7Rotation.Value = snapshotData.GetChild7RotationValue(deserializerState);
+                ghostChild7Translation.Value = snapshotData.GetChild7TranslationValue(deserializerState);
+                ghostChild8Rotation.Value = snapshotData.GetChild8RotationValue(deserializerState);
+                ghostChild8Translation.Value = snapshotData.GetChild8TranslationValue(deserializerState);
                 ghostRotationFromEntity[ghostLinkedEntityGroupArray[entityIndex][0].Value] = ghostRotation;
                 ghostTranslationFromEntity[ghostLinkedEntityGroupArray[entityIndex][0].Value] = ghostTranslation;
                 ghostRotationFromEntity[ghostLinkedEntityGroupArray[entityIndex][1].Value] = ghostChild0Rotation;
@@ -110,6 +118,10 @@ public class WhaleGhostUpdateSystem : JobComponentSystem
                 ghostTranslationFromEntity[ghostLinkedEntityGroupArray[entityIndex][6].Value] = ghostChild5Translation;
                 ghostRotationFromEntity[ghostLinkedEntityGroupArray[entityIndex][7].Value] = ghostChild6Rotation;
                 ghostTranslationFromEntity[ghostLinkedEntityGroupArray[entityIndex][7].Value] = ghostChild6Translation;
+                ghostRotationFromEntity[ghostLinkedEntityGroupArray[entityIndex][8].Value] = ghostChild7Rotation;
+                ghostTranslationFromEntity[ghostLinkedEntityGroupArray[entityIndex][8].Value] = ghostChild7Translation;
+                ghostRotationFromEntity[ghostLinkedEntityGroupArray[entityIndex][9].Value] = ghostChild8Rotation;
+                ghostTranslationFromEntity[ghostLinkedEntityGroupArray[entityIndex][9].Value] = ghostChild8Translation;
                 ghostPlayerCommandDataArray[entityIndex] = ghostPlayerCommandData;
             }
         }
@@ -194,6 +206,10 @@ public class WhaleGhostUpdateSystem : JobComponentSystem
                 var ghostChild5Translation = ghostTranslationFromEntity[ghostLinkedEntityGroupArray[entityIndex][6].Value];
                 var ghostChild6Rotation = ghostRotationFromEntity[ghostLinkedEntityGroupArray[entityIndex][7].Value];
                 var ghostChild6Translation = ghostTranslationFromEntity[ghostLinkedEntityGroupArray[entityIndex][7].Value];
+                var ghostChild7Rotation = ghostRotationFromEntity[ghostLinkedEntityGroupArray[entityIndex][8].Value];
+                var ghostChild7Translation = ghostTranslationFromEntity[ghostLinkedEntityGroupArray[entityIndex][8].Value];
+                var ghostChild8Rotation = ghostRotationFromEntity[ghostLinkedEntityGroupArray[entityIndex][9].Value];
+                var ghostChild8Translation = ghostTranslationFromEntity[ghostLinkedEntityGroupArray[entityIndex][9].Value];
                 ghostPlayerCommandData.PlayerId = snapshotData.GetPlayerCommandDataPlayerId(deserializerState);
                 ghostRotation.Value = snapshotData.GetRotationValue(deserializerState);
                 ghostTranslation.Value = snapshotData.GetTranslationValue(deserializerState);
@@ -211,6 +227,10 @@ public class WhaleGhostUpdateSystem : JobComponentSystem
                 ghostChild5Translation.Value = snapshotData.GetChild5TranslationValue(deserializerState);
                 ghostChild6Rotation.Value = snapshotData.GetChild6RotationValue(deserializerState);
                 ghostChild6Translation.Value = snapshotData.GetChild6TranslationValue(deserializerState);
+                ghostChild7Rotation.Value = snapshotData.GetChild7RotationValue(deserializerState);
+                ghostChild7Translation.Value = snapshotData.GetChild7TranslationValue(deserializerState);
+                ghostChild8Rotation.Value = snapshotData.GetChild8RotationValue(deserializerState);
+                ghostChild8Translation.Value = snapshotData.GetChild8TranslationValue(deserializerState);
                 ghostRotationFromEntity[ghostLinkedEntityGroupArray[entityIndex][0].Value] = ghostRotation;
                 ghostTranslationFromEntity[ghostLinkedEntityGroupArray[entityIndex][0].Value] = ghostTranslation;
                 ghostRotationFromEntity[ghostLinkedEntityGroupArray[entityIndex][1].Value] = ghostChild0Rotation;
@@ -227,6 +247,10 @@ public class WhaleGhostUpdateSystem : JobComponentSystem
                 ghostTranslationFromEntity[ghostLinkedEntityGroupArray[entityIndex][6].Value] = ghostChild5Translation;
                 ghostRotationFromEntity[ghostLinkedEntityGroupArray[entityIndex][7].Value] = ghostChild6Rotation;
                 ghostTranslationFromEntity[ghostLinkedEntityGroupArray[entityIndex][7].Value] = ghostChild6Translation;
+                ghostRotationFromEntity[ghostLinkedEntityGroupArray[entityIndex][8].Value] = ghostChild7Rotation;
+                ghostTranslationFromEntity[ghostLinkedEntityGroupArray[entityIndex][8].Value] = ghostChild7Translation;
+                ghostRotationFromEntity[ghostLinkedEntityGroupArray[entityIndex][9].Value] = ghostChild8Rotation;
+                ghostTranslationFromEntity[ghostLinkedEntityGroupArray[entityIndex][9].Value] = ghostChild8Translation;
                 ghostPlayerCommandDataArray[entityIndex] = ghostPlayerCommandData;
             }
         }

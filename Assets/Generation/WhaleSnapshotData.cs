@@ -62,6 +62,20 @@ public struct WhaleSnapshotData : ISnapshotData<WhaleSnapshotData>
     private int Child6TranslationValueX;
     private int Child6TranslationValueY;
     private int Child6TranslationValueZ;
+    private int Child7RotationValueX;
+    private int Child7RotationValueY;
+    private int Child7RotationValueZ;
+    private int Child7RotationValueW;
+    private int Child7TranslationValueX;
+    private int Child7TranslationValueY;
+    private int Child7TranslationValueZ;
+    private int Child8RotationValueX;
+    private int Child8RotationValueY;
+    private int Child8RotationValueZ;
+    private int Child8RotationValueW;
+    private int Child8TranslationValueX;
+    private int Child8TranslationValueY;
+    private int Child8TranslationValueZ;
     uint changeMask0;
 
     public uint Tick => tick;
@@ -377,6 +391,80 @@ public struct WhaleSnapshotData : ISnapshotData<WhaleSnapshotData>
         Child6TranslationValueY = (int)(val.y * 100);
         Child6TranslationValueZ = (int)(val.z * 100);
     }
+    public quaternion GetChild7RotationValue(GhostDeserializerState deserializerState)
+    {
+        return GetChild7RotationValue();
+    }
+    public quaternion GetChild7RotationValue()
+    {
+        return new quaternion(Child7RotationValueX * 0.001f, Child7RotationValueY * 0.001f, Child7RotationValueZ * 0.001f, Child7RotationValueW * 0.001f);
+    }
+    public void SetChild7RotationValue(quaternion q, GhostSerializerState serializerState)
+    {
+        SetChild7RotationValue(q);
+    }
+    public void SetChild7RotationValue(quaternion q)
+    {
+        Child7RotationValueX = (int)(q.value.x * 1000);
+        Child7RotationValueY = (int)(q.value.y * 1000);
+        Child7RotationValueZ = (int)(q.value.z * 1000);
+        Child7RotationValueW = (int)(q.value.w * 1000);
+    }
+    public float3 GetChild7TranslationValue(GhostDeserializerState deserializerState)
+    {
+        return GetChild7TranslationValue();
+    }
+    public float3 GetChild7TranslationValue()
+    {
+        return new float3(Child7TranslationValueX * 0.01f, Child7TranslationValueY * 0.01f, Child7TranslationValueZ * 0.01f);
+    }
+    public void SetChild7TranslationValue(float3 val, GhostSerializerState serializerState)
+    {
+        SetChild7TranslationValue(val);
+    }
+    public void SetChild7TranslationValue(float3 val)
+    {
+        Child7TranslationValueX = (int)(val.x * 100);
+        Child7TranslationValueY = (int)(val.y * 100);
+        Child7TranslationValueZ = (int)(val.z * 100);
+    }
+    public quaternion GetChild8RotationValue(GhostDeserializerState deserializerState)
+    {
+        return GetChild8RotationValue();
+    }
+    public quaternion GetChild8RotationValue()
+    {
+        return new quaternion(Child8RotationValueX * 0.001f, Child8RotationValueY * 0.001f, Child8RotationValueZ * 0.001f, Child8RotationValueW * 0.001f);
+    }
+    public void SetChild8RotationValue(quaternion q, GhostSerializerState serializerState)
+    {
+        SetChild8RotationValue(q);
+    }
+    public void SetChild8RotationValue(quaternion q)
+    {
+        Child8RotationValueX = (int)(q.value.x * 1000);
+        Child8RotationValueY = (int)(q.value.y * 1000);
+        Child8RotationValueZ = (int)(q.value.z * 1000);
+        Child8RotationValueW = (int)(q.value.w * 1000);
+    }
+    public float3 GetChild8TranslationValue(GhostDeserializerState deserializerState)
+    {
+        return GetChild8TranslationValue();
+    }
+    public float3 GetChild8TranslationValue()
+    {
+        return new float3(Child8TranslationValueX * 0.01f, Child8TranslationValueY * 0.01f, Child8TranslationValueZ * 0.01f);
+    }
+    public void SetChild8TranslationValue(float3 val, GhostSerializerState serializerState)
+    {
+        SetChild8TranslationValue(val);
+    }
+    public void SetChild8TranslationValue(float3 val)
+    {
+        Child8TranslationValueX = (int)(val.x * 100);
+        Child8TranslationValueY = (int)(val.y * 100);
+        Child8TranslationValueZ = (int)(val.z * 100);
+    }
 
     public void PredictDelta(uint tick, ref WhaleSnapshotData baseline1, ref WhaleSnapshotData baseline2)
     {
@@ -438,6 +526,20 @@ public struct WhaleSnapshotData : ISnapshotData<WhaleSnapshotData>
         Child6TranslationValueX = predictor.PredictInt(Child6TranslationValueX, baseline1.Child6TranslationValueX, baseline2.Child6TranslationValueX);
         Child6TranslationValueY = predictor.PredictInt(Child6TranslationValueY, baseline1.Child6TranslationValueY, baseline2.Child6TranslationValueY);
         Child6TranslationValueZ = predictor.PredictInt(Child6TranslationValueZ, baseline1.Child6TranslationValueZ, baseline2.Child6TranslationValueZ);
+        Child7RotationValueX = predictor.PredictInt(Child7RotationValueX, baseline1.Child7RotationValueX, baseline2.Child7RotationValueX);
+        Child7RotationValueY = predictor.PredictInt(Child7RotationValueY, baseline1.Child7RotationValueY, baseline2.Child7RotationValueY);
+        Child7RotationValueZ = predictor.PredictInt(Child7RotationValueZ, baseline1.Child7RotationValueZ, baseline2.Child7RotationValueZ);
+        Child7RotationValueW = predictor.PredictInt(Child7RotationValueW, baseline1.Child7RotationValueW, baseline2.Child7RotationValueW);
+        Child7TranslationValueX = predictor.PredictInt(Child7TranslationValueX, baseline1.Child7TranslationValueX, baseline2.Child7TranslationValueX);
+        Child7TranslationValueY = predictor.PredictInt(Child7TranslationValueY, baseline1.Child7TranslationValueY, baseline2.Child7TranslationValueY);
+        Child7TranslationValueZ = predictor.PredictInt(Child7TranslationValueZ, baseline1.Child7TranslationValueZ, baseline2.Child7TranslationValueZ);
+        Child8RotationValueX = predictor.PredictInt(Child8RotationValueX, baseline1.Child8RotationValueX, baseline2.Child8RotationValueX);
+        Child8RotationValueY = predictor.PredictInt(Child8RotationValueY, baseline1.Child8RotationValueY, baseline2.Child8RotationValueY);
+        Child8RotationValueZ = predictor.PredictInt(Child8RotationValueZ, baseline1.Child8RotationValueZ, baseline2.Child8RotationValueZ);
+        Child8RotationValueW = predictor.PredictInt(Child8RotationValueW, baseline1.Child8RotationValueW, baseline2.Child8RotationValueW);
+        Child8TranslationValueX = predictor.PredictInt(Child8TranslationValueX, baseline1.Child8TranslationValueX, baseline2.Child8TranslationValueX);
+        Child8TranslationValueY = predictor.PredictInt(Child8TranslationValueY, baseline1.Child8TranslationValueY, baseline2.Child8TranslationValueY);
+        Child8TranslationValueZ = predictor.PredictInt(Child8TranslationValueZ, baseline1.Child8TranslationValueZ, baseline2.Child8TranslationValueZ);
     }
 
     public void Serialize(int networkId, ref WhaleSnapshotData baseline, ref DataStreamWriter writer, NetworkCompressionModel compressionModel)
@@ -499,6 +601,20 @@ public struct WhaleSnapshotData : ISnapshotData<WhaleSnapshotData>
         changeMask0 |= (Child6TranslationValueX != baseline.Child6TranslationValueX ||
                                            Child6TranslationValueY != baseline.Child6TranslationValueY ||
                                            Child6TranslationValueZ != baseline.Child6TranslationValueZ) ? (1u<<16) : 0;
+        changeMask0 |= (Child7RotationValueX != baseline.Child7RotationValueX ||
+                                           Child7RotationValueY != baseline.Child7RotationValueY ||
+                                           Child7RotationValueZ != baseline.Child7RotationValueZ ||
+                                           Child7RotationValueW != baseline.Child7RotationValueW) ? (1u<<17) : 0;
+        changeMask0 |= (Child7TranslationValueX != baseline.Child7TranslationValueX ||
+                                           Child7TranslationValueY != baseline.Child7TranslationValueY ||
+                                           Child7TranslationValueZ != baseline.Child7TranslationValueZ) ? (1u<<18) : 0;
+        changeMask0 |= (Child8RotationValueX != baseline.Child8RotationValueX ||
+                                           Child8RotationValueY != baseline.Child8RotationValueY ||
+                                           Child8RotationValueZ != baseline.Child8RotationValueZ ||
+                                           Child8RotationValueW != baseline.Child8RotationValueW) ? (1u<<19) : 0;
+        changeMask0 |= (Child8TranslationValueX != baseline.Child8TranslationValueX ||
+                                           Child8TranslationValueY != baseline.Child8TranslationValueY ||
+                                           Child8TranslationValueZ != baseline.Child8TranslationValueZ) ? (1u<<20) : 0;
         writer.WritePackedUIntDelta(changeMask0, baseline.changeMask0, compressionModel);
         if ((changeMask0 & (1 << 0)) != 0)
             writer.WritePackedIntDelta(PlayerCommandDataPlayerId, baseline.PlayerCommandDataPlayerId, compressionModel);
@@ -605,6 +721,32 @@ public struct WhaleSnapshotData : ISnapshotData<WhaleSnapshotData>
             writer.WritePackedIntDelta(Child6TranslationValueX, baseline.Child6TranslationValueX, compressionModel);
             writer.WritePackedIntDelta(Child6TranslationValueY, baseline.Child6TranslationValueY, compressionModel);
             writer.WritePackedIntDelta(Child6TranslationValueZ, baseline.Child6TranslationValueZ, compressionModel);
+        }
+        if ((changeMask0 & (1 << 17)) != 0)
+        {
+            writer.WritePackedIntDelta(Child7RotationValueX, baseline.Child7RotationValueX, compressionModel);
+            writer.WritePackedIntDelta(Child7RotationValueY, baseline.Child7RotationValueY, compressionModel);
+            writer.WritePackedIntDelta(Child7RotationValueZ, baseline.Child7RotationValueZ, compressionModel);
+            writer.WritePackedIntDelta(Child7RotationValueW, baseline.Child7RotationValueW, compressionModel);
+        }
+        if ((changeMask0 & (1 << 18)) != 0)
+        {
+            writer.WritePackedIntDelta(Child7TranslationValueX, baseline.Child7TranslationValueX, compressionModel);
+            writer.WritePackedIntDelta(Child7TranslationValueY, baseline.Child7TranslationValueY, compressionModel);
+            writer.WritePackedIntDelta(Child7TranslationValueZ, baseline.Child7TranslationValueZ, compressionModel);
+        }
+        if ((changeMask0 & (1 << 19)) != 0)
+        {
+            writer.WritePackedIntDelta(Child8RotationValueX, baseline.Child8RotationValueX, compressionModel);
+            writer.WritePackedIntDelta(Child8RotationValueY, baseline.Child8RotationValueY, compressionModel);
+            writer.WritePackedIntDelta(Child8RotationValueZ, baseline.Child8RotationValueZ, compressionModel);
+            writer.WritePackedIntDelta(Child8RotationValueW, baseline.Child8RotationValueW, compressionModel);
+        }
+        if ((changeMask0 & (1 << 20)) != 0)
+        {
+            writer.WritePackedIntDelta(Child8TranslationValueX, baseline.Child8TranslationValueX, compressionModel);
+            writer.WritePackedIntDelta(Child8TranslationValueY, baseline.Child8TranslationValueY, compressionModel);
+            writer.WritePackedIntDelta(Child8TranslationValueZ, baseline.Child8TranslationValueZ, compressionModel);
         }
     }
 
@@ -825,6 +967,58 @@ public struct WhaleSnapshotData : ISnapshotData<WhaleSnapshotData>
             Child6TranslationValueY = baseline.Child6TranslationValueY;
             Child6TranslationValueZ = baseline.Child6TranslationValueZ;
         }
+        if ((changeMask0 & (1 << 17)) != 0)
+        {
+            Child7RotationValueX = reader.ReadPackedIntDelta(baseline.Child7RotationValueX, compressionModel);
+            Child7RotationValueY = reader.ReadPackedIntDelta(baseline.Child7RotationValueY, compressionModel);
+            Child7RotationValueZ = reader.ReadPackedIntDelta(baseline.Child7RotationValueZ, compressionModel);
+            Child7RotationValueW = reader.ReadPackedIntDelta(baseline.Child7RotationValueW, compressionModel);
+        }
+        else
+        {
+            Child7RotationValueX = baseline.Child7RotationValueX;
+            Child7RotationValueY = baseline.Child7RotationValueY;
+            Child7RotationValueZ = baseline.Child7RotationValueZ;
+            Child7RotationValueW = baseline.Child7RotationValueW;
+        }
+        if ((changeMask0 & (1 << 18)) != 0)
+        {
+            Child7TranslationValueX = reader.ReadPackedIntDelta(baseline.Child7TranslationValueX, compressionModel);
+            Child7TranslationValueY = reader.ReadPackedIntDelta(baseline.Child7TranslationValueY, compressionModel);
+            Child7TranslationValueZ = reader.ReadPackedIntDelta(baseline.Child7TranslationValueZ, compressionModel);
+        }
+        else
+        {
+            Child7TranslationValueX = baseline.Child7TranslationValueX;
+            Child7TranslationValueY = baseline.Child7TranslationValueY;
+            Child7TranslationValueZ = baseline.Child7TranslationValueZ;
+        }
+        if ((changeMask0 & (1 << 19)) != 0)
+        {
+            Child8RotationValueX = reader.ReadPackedIntDelta(baseline.Child8RotationValueX, compressionModel);
+            Child8RotationValueY = reader.ReadPackedIntDelta(baseline.Child8RotationValueY, compressionModel);
+            Child8RotationValueZ = reader.ReadPackedIntDelta(baseline.Child8RotationValueZ, compressionModel);
+            Child8RotationValueW = reader.ReadPackedIntDelta(baseline.Child8RotationValueW, compressionModel);
+        }
+        else
+        {
+            Child8RotationValueX = baseline.Child8RotationValueX;
+            Child8RotationValueY = baseline.Child8RotationValueY;
+            Child8RotationValueZ = baseline.Child8RotationValueZ;
+            Child8RotationValueW = baseline.Child8RotationValueW;
+        }
+        if ((changeMask0 & (1 << 20)) != 0)
+        {
+            Child8TranslationValueX = reader.ReadPackedIntDelta(baseline.Child8TranslationValueX, compressionModel);
+            Child8TranslationValueY = reader.ReadPackedIntDelta(baseline.Child8TranslationValueY, compressionModel);
+            Child8TranslationValueZ = reader.ReadPackedIntDelta(baseline.Child8TranslationValueZ, compressionModel);
+        }
+        else
+        {
+            Child8TranslationValueX = baseline.Child8TranslationValueX;
+            Child8TranslationValueY = baseline.Child8TranslationValueY;
+            Child8TranslationValueZ = baseline.Child8TranslationValueZ;
+        }
     }
     public void Interpolate(ref WhaleSnapshotData target, float factor)
     {
@@ -844,5 +1038,9 @@ public struct WhaleSnapshotData : ISnapshotData<WhaleSnapshotData>
         SetChild5TranslationValue(math.lerp(GetChild5TranslationValue(), target.GetChild5TranslationValue(), factor));
         SetChild6RotationValue(math.slerp(GetChild6RotationValue(), target.GetChild6RotationValue(), factor));
         SetChild6TranslationValue(math.lerp(GetChild6TranslationValue(), target.GetChild6TranslationValue(), factor));
+        SetChild7RotationValue(math.slerp(GetChild7RotationValue(), target.GetChild7RotationValue(), factor));
+        SetChild7TranslationValue(math.lerp(GetChild7TranslationValue(), target.GetChild7TranslationValue(), factor));
+        SetChild8RotationValue(math.slerp(GetChild8RotationValue(), target.GetChild8RotationValue(), factor));
+        SetChild8TranslationValue(math.lerp(GetChild8TranslationValue(), target.GetChild8TranslationValue(), factor));
     }
 }

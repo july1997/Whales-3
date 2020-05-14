@@ -85,14 +85,13 @@ public class GoInGameServerSystem : ComponentSystem
                     // 回転値
                     EntityManager.SetComponentData(boid, new Rotation { Value = quaternion.identity });
                     // 大きさ
-                    EntityManager.SetComponentData(boid, new NonUniformScale { Value = Bootstrap.Boid.scale });
+                    //EntityManager.SetComponentData(boid, new NonUniformScale { Value = Bootstrap.Boid.scale });
                     // EntityManagerからComponentDataを追加する(Prefabに設定してもOK、その場合はSetComponentDataを使う)
                     EntityManager.AddComponentData(boid, new Velocity { Value = random.NextFloat3Direction() * Bootstrap.Param.initSpeed });
                     EntityManager.AddComponentData(boid, new Acceleration { Value = float3.zero });
                     // Dynamic Buffer の追加
                     PostUpdateCommands.AddBuffer<NeighborsEntityBuffer>(boid);
                 }
-                Debug.Log("born");
                 first = true;
             }
 

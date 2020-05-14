@@ -2,14 +2,18 @@ using Unity.Collections.LowLevel.Unsafe;
 using Unity.Entities;
 using Unity.Collections;
 using Unity.NetCode;
+using Unity.Physics;
 using Unity.Transforms;
 using Unity.Rendering;
 
 public struct WhaleGhostSerializer : IGhostSerializer<WhaleSnapshotData>
 {
     private ComponentType componentTypePlayerCommandData;
+    private ComponentType componentTypePhysicsCollider;
+    private ComponentType componentTypePhysicsGravityFactor;
+    private ComponentType componentTypePhysicsMass;
+    private ComponentType componentTypePhysicsVelocity;
     private ComponentType componentTypeLocalToWorld;
-    private ComponentType componentTypeNonUniformScale;
     private ComponentType componentTypeRotation;
     private ComponentType componentTypeTranslation;
     private ComponentType componentTypeLinkedEntityGroup;
@@ -32,6 +36,10 @@ public struct WhaleGhostSerializer : IGhostSerializer<WhaleSnapshotData>
     [NativeDisableContainerSafetyRestriction][ReadOnly] private ComponentDataFromEntity<Translation> ghostChild5TranslationType;
     [NativeDisableContainerSafetyRestriction][ReadOnly] private ComponentDataFromEntity<Rotation> ghostChild6RotationType;
     [NativeDisableContainerSafetyRestriction][ReadOnly] private ComponentDataFromEntity<Translation> ghostChild6TranslationType;
+    [NativeDisableContainerSafetyRestriction][ReadOnly] private ComponentDataFromEntity<Rotation> ghostChild7RotationType;
+    [NativeDisableContainerSafetyRestriction][ReadOnly] private ComponentDataFromEntity<Translation> ghostChild7TranslationType;
+    [NativeDisableContainerSafetyRestriction][ReadOnly] private ComponentDataFromEntity<Rotation> ghostChild8RotationType;
+    [NativeDisableContainerSafetyRestriction][ReadOnly] private ComponentDataFromEntity<Translation> ghostChild8TranslationType;
 
 
     public int CalculateImportance(ArchetypeChunk chunk)
@@ -43,8 +51,11 @@ public struct WhaleGhostSerializer : IGhostSerializer<WhaleSnapshotData>
     public void BeginSerialize(ComponentSystemBase system)
     {
         componentTypePlayerCommandData = ComponentType.ReadWrite<PlayerCommandData>();
+        componentTypePhysicsCollider = ComponentType.ReadWrite<PhysicsCollider>();
+        componentTypePhysicsGravityFactor = ComponentType.ReadWrite<PhysicsGravityFactor>();
+        componentTypePhysicsMass = ComponentType.ReadWrite<PhysicsMass>();
+        componentTypePhysicsVelocity = ComponentType.ReadWrite<PhysicsVelocity>();
         componentTypeLocalToWorld = ComponentType.ReadWrite<LocalToWorld>();
-        componentTypeNonUniformScale = ComponentType.ReadWrite<NonUniformScale>();
         componentTypeRotation = ComponentType.ReadWrite<Rotation>();
         componentTypeTranslation = ComponentType.ReadWrite<Translation>();
         componentTypeLinkedEntityGroup = ComponentType.ReadWrite<LinkedEntityGroup>();
@@ -66,6 +77,10 @@ public struct WhaleGhostSerializer : IGhostSerializer<WhaleSnapshotData>
         ghostChild5TranslationType = system.GetComponentDataFromEntity<Translation>(true);
         ghostChild6RotationType = system.GetComponentDataFromEntity<Rotation>(true);
         ghostChild6TranslationType = system.GetComponentDataFromEntity<Translation>(true);
+        ghostChild7RotationType = system.GetComponentDataFromEntity<Rotation>(true);
+        ghostChild7TranslationType = system.GetComponentDataFromEntity<Translation>(true);
+        ghostChild8RotationType = system.GetComponentDataFromEntity<Rotation>(true);
+        ghostChild8TranslationType = system.GetComponentDataFromEntity<Translation>(true);
     }
 
     public void CopyToSnapshot(ArchetypeChunk chunk, int ent, uint tick, ref WhaleSnapshotData snapshot, GhostSerializerState serializerState)
@@ -92,5 +107,9 @@ public struct WhaleGhostSerializer : IGhostSerializer<WhaleSnapshotData>
         snapshot.SetChild5TranslationValue(ghostChild5TranslationType[chunkDataLinkedEntityGroup[ent][6].Value].Value, serializerState);
         snapshot.SetChild6RotationValue(ghostChild6RotationType[chunkDataLinkedEntityGroup[ent][7].Value].Value, serializerState);
         snapshot.SetChild6TranslationValue(ghostChild6TranslationType[chunkDataLinkedEntityGroup[ent][7].Value].Value, serializerState);
+        snapshot.SetChild7RotationValue(ghostChild7RotationType[chunkDataLinkedEntityGroup[ent][8].Value].Value, serializerState);
+        snapshot.SetChild7TranslationValue(ghostChild7TranslationType[chunkDataLinkedEntityGroup[ent][8].Value].Value, serializerState);
+        snapshot.SetChild8RotationValue(ghostChild8RotationType[chunkDataLinkedEntityGroup[ent][9].Value].Value, serializerState);
+        snapshot.SetChild8TranslationValue(ghostChild8TranslationType[chunkDataLinkedEntityGroup[ent][9].Value].Value, serializerState);
     }
 }

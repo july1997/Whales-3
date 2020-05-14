@@ -11,8 +11,8 @@ public struct WhaleGhostSerializerCollection : IGhostSerializerCollection
     {
         var arr = new string[]
         {
-            "WhaleGhostSerializer",
             "BoidGhostSerializer",
+            "WhaleGhostSerializer",
         };
         return arr;
     }
@@ -22,17 +22,17 @@ public struct WhaleGhostSerializerCollection : IGhostSerializerCollection
     public static int FindGhostType<T>()
         where T : struct, ISnapshotData<T>
     {
-        if (typeof(T) == typeof(WhaleSnapshotData))
-            return 0;
         if (typeof(T) == typeof(BoidSnapshotData))
+            return 0;
+        if (typeof(T) == typeof(WhaleSnapshotData))
             return 1;
         return -1;
     }
 
     public void BeginSerialize(ComponentSystemBase system)
     {
-        m_WhaleGhostSerializer.BeginSerialize(system);
         m_BoidGhostSerializer.BeginSerialize(system);
+        m_WhaleGhostSerializer.BeginSerialize(system);
     }
 
     public int CalculateImportance(int serializer, ArchetypeChunk chunk)
@@ -40,9 +40,9 @@ public struct WhaleGhostSerializerCollection : IGhostSerializerCollection
         switch (serializer)
         {
             case 0:
-                return m_WhaleGhostSerializer.CalculateImportance(chunk);
-            case 1:
                 return m_BoidGhostSerializer.CalculateImportance(chunk);
+            case 1:
+                return m_WhaleGhostSerializer.CalculateImportance(chunk);
         }
 
         throw new ArgumentException("Invalid serializer type");
@@ -53,9 +53,9 @@ public struct WhaleGhostSerializerCollection : IGhostSerializerCollection
         switch (serializer)
         {
             case 0:
-                return m_WhaleGhostSerializer.SnapshotSize;
-            case 1:
                 return m_BoidGhostSerializer.SnapshotSize;
+            case 1:
+                return m_WhaleGhostSerializer.SnapshotSize;
         }
 
         throw new ArgumentException("Invalid serializer type");
@@ -67,18 +67,18 @@ public struct WhaleGhostSerializerCollection : IGhostSerializerCollection
         {
             case 0:
             {
-                return GhostSendSystem<WhaleGhostSerializerCollection>.InvokeSerialize<WhaleGhostSerializer, WhaleSnapshotData>(m_WhaleGhostSerializer, ref dataStream, data);
+                return GhostSendSystem<WhaleGhostSerializerCollection>.InvokeSerialize<BoidGhostSerializer, BoidSnapshotData>(m_BoidGhostSerializer, ref dataStream, data);
             }
             case 1:
             {
-                return GhostSendSystem<WhaleGhostSerializerCollection>.InvokeSerialize<BoidGhostSerializer, BoidSnapshotData>(m_BoidGhostSerializer, ref dataStream, data);
+                return GhostSendSystem<WhaleGhostSerializerCollection>.InvokeSerialize<WhaleGhostSerializer, WhaleSnapshotData>(m_WhaleGhostSerializer, ref dataStream, data);
             }
             default:
                 throw new ArgumentException("Invalid serializer type");
         }
     }
-    private WhaleGhostSerializer m_WhaleGhostSerializer;
     private BoidGhostSerializer m_BoidGhostSerializer;
+    private WhaleGhostSerializer m_WhaleGhostSerializer;
 }
 
 public struct EnableWhaleGhostSendSystemComponent : IComponentData

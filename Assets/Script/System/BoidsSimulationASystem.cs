@@ -28,7 +28,7 @@ public class BoidsSimulationSystem : JobComponentSystem
         // NativeDisableParallelForRestriction:重要
         // ただランダムアクセスが頻発することになるのでパフォーマンス面でデメリットがありそう
         [NativeDisableParallelForRestriction] public BufferFromEntity<NeighborsEntityBuffer> neighborsFromEntity;
-        [ReadOnly] public NativeArray<Entity> entities;
+        [DeallocateOnJobCompletion] [ReadOnly] public NativeArray<Entity> entities;
 
         public void Execute(
             Entity entity,
@@ -173,7 +173,7 @@ public class BoidsSimulationSystem : JobComponentSystem
     public struct PlayerJob : IJobForEach<Translation, Acceleration>
     {
         [ReadOnly] public float separationWeight;
-        [ReadOnly] public NativeArray<Translation> playerEntities;
+         [DeallocateOnJobCompletion] [ReadOnly] public NativeArray<Translation> playerEntities;
 
         public void Execute([ReadOnly] ref Translation pos, ref Acceleration accel)
         {
@@ -276,6 +276,7 @@ public class BoidsSimulationSystem : JobComponentSystem
         inputDeps = cohesion.Schedule(this, inputDeps);
         inputDeps = player.Schedule(this, inputDeps);
         inputDeps = move.Schedule(this, inputDeps);
+        
         return inputDeps;
     }
 }
