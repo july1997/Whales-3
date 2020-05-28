@@ -1,7 +1,5 @@
 ﻿using Unity.Entities;
 using Unity.NetCode;
-using Unity.Networking.Transport;
-using Unity.Burst;
 using Unity.Mathematics;
 using Unity.Transforms;
 
@@ -9,6 +7,10 @@ using UnityEngine;
 
 // The system that makes the RPC request component transfer
 public class GoInGameRequestSystem : RpcCommandRequestSystem<GoInGameRequest>
+{
+}
+
+public class ScoreRequestSystem : RpcCommandRequestSystem<ScoreRequest>
 {
 }
 
@@ -23,8 +25,10 @@ public class NetCubeReceiveCommandSystem : CommandReceiveSystem<InputCommandData
 [UpdateInGroup(typeof(ClientSimulationSystemGroup))]
 public class GoInGameClientSystem : ComponentSystem
 {
+    private ScoreMonoBehavior _counter;
     protected override void OnCreate()
     {
+        _counter = GameObject.FindObjectOfType<ScoreMonoBehavior>();
     }
 
     protected override void OnUpdate()
@@ -35,6 +39,17 @@ public class GoInGameClientSystem : ComponentSystem
             var req = PostUpdateCommands.CreateEntity();
             PostUpdateCommands.AddComponent<GoInGameRequest>(req);
             PostUpdateCommands.AddComponent(req, new SendRpcCommandRequestComponent { TargetConnection = ent });
+        });
+
+        Entities.WithNone<SendRpcCommandRequestComponent>().ForEach((Entity reqEnt, ref ScoreRequest req, ref ReceiveRpcCommandRequestComponent reqSrc) =>
+        {
+            var score = GetSingleton<ScoreCompoment>();
+
+            score.value += req.addPoints;
+            _counter.SetCount(score.value);
+
+            SetSingleton<ScoreCompoment>(score);
+            PostUpdateCommands.DestroyEntity(reqEnt);
         });
     }
 }

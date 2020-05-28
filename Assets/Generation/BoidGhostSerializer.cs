@@ -2,10 +2,12 @@ using Unity.Collections.LowLevel.Unsafe;
 using Unity.Entities;
 using Unity.Collections;
 using Unity.NetCode;
+using Unity.Physics;
 using Unity.Transforms;
 
 public struct BoidGhostSerializer : IGhostSerializer<BoidSnapshotData>
 {
+    private ComponentType componentTypePhysicsCollider;
     private ComponentType componentTypeCompositeScale;
     private ComponentType componentTypeLocalToWorld;
     private ComponentType componentTypeRotation;
@@ -23,6 +25,7 @@ public struct BoidGhostSerializer : IGhostSerializer<BoidSnapshotData>
     public int SnapshotSize => UnsafeUtility.SizeOf<BoidSnapshotData>();
     public void BeginSerialize(ComponentSystemBase system)
     {
+        componentTypePhysicsCollider = ComponentType.ReadWrite<PhysicsCollider>();
         componentTypeCompositeScale = ComponentType.ReadWrite<CompositeScale>();
         componentTypeLocalToWorld = ComponentType.ReadWrite<LocalToWorld>();
         componentTypeRotation = ComponentType.ReadWrite<Rotation>();

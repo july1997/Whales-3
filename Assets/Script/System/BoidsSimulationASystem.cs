@@ -173,7 +173,7 @@ public class BoidsSimulationSystem : JobComponentSystem
     public struct PlayerJob : IJobForEach<Translation, Acceleration>
     {
         [ReadOnly] public float separationWeight;
-         [DeallocateOnJobCompletion] [ReadOnly] public NativeArray<Translation> playerEntities;
+        [DeallocateOnJobCompletion] [ReadOnly] public NativeArray<Translation> playerEntities;
 
         public void Execute([ReadOnly] ref Translation pos, ref Acceleration accel)
         {

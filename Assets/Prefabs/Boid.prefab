@@ -143,10 +143,10 @@ MonoBehaviour:
         CombineMode: 2
     m_BelongsTo:
       m_Override: 0
-      m_Value: 0101010101010101010101010101010101010101010101010101010101010101
+      m_Value: 0100000000000000000000000000000000000000000000000000000000000000
     m_CollidesWith:
       m_Override: 0
-      m_Value: 0101010101010101010101010101010101010101010101010101010101010101
+      m_Value: 0001000000000000000000000000000000000000000000000000000000000000
     m_RaisesCollisionEvents:
       m_Override: 0
       m_Value: 0
@@ -178,7 +178,7 @@ MonoBehaviour:
   - name: Unity.Physics.PhysicsCollider
     interpolatedClient: 1
     predictedClient: 1
-    server: 0
+    server: 1
     sendDataTo: 0
     fields: []
     manualFieldList: 0

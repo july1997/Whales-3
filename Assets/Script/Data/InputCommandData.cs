@@ -1,14 +1,11 @@
 ﻿using Unity.NetCode;
 using Unity.Networking.Transport;
-using Unity.Mathematics;
-
 public struct InputCommandData : ICommandData<InputCommandData>
 {
     public uint Tick => tick;
     public uint tick;
     public float angleH;
     public float angleV;
-    public float3 posVector;
     public float speed;
 
     public void Deserialize(uint tick,ref DataStreamReader reader)

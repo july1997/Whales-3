@@ -1,7 +1,6 @@
 ﻿using Unity.Entities;
 using Unity.NetCode;
 using Unity.Networking.Transport;
-using Unity.Burst;
 
 // Control system updating in the default world
 [UpdateInWorld(UpdateInWorld.TargetWorld.Default)]
